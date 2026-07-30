@@ -58,7 +58,17 @@
     }
     .mb-apple { font-size: 14px; opacity: 0.85; }
     .mb-brand { font-size: 13px; font-weight: 600; color: rgba(255,255,255,0.88); letter-spacing: -0.15px; }
-    .mb-item { font-size: 13px; font-weight: 400; color: rgba(255,255,255,0.55); letter-spacing: -0.1px; }
+    .mb-item {
+      font-size: 13px;
+      font-weight: 400;
+      color: rgba(255,255,255,0.55);
+      letter-spacing: -0.1px;
+      text-decoration: none;
+      cursor: pointer;
+      transition: color 0.15s;
+    }
+    .mb-item:hover { color: rgba(255,255,255,0.85); }
+    section[id] { scroll-margin-top: 40px; }
     .mb-spacer { flex: 1; }
     .mb-right { display: flex; align-items: center; gap: 10px; }
     .mb-right span { font-size: 12px; color: rgba(255,255,255,0.5); }
@@ -161,7 +171,7 @@
 
     /* ── Section Sub ── */
     .s-sub {
-      font-size: clamp(16px, 2vw, 19px);
+      font-size: clamp(17px, 2.2vw, 20px);
       font-weight: 400;
       line-height: 1.65;
       color: var(--cl);
@@ -281,6 +291,10 @@
       margin-bottom: 32px;
       position: relative; z-index: 1;
     }
+    .hero-hl.hero-hl-md {
+      font-size: clamp(30px, 4.6vw, 54px);
+      line-height: 1.15;
+    }
     .hero-hl em {
       font-style: normal;
       color: var(--nv);
@@ -294,7 +308,7 @@
       position: relative; z-index: 1;
     }
     .hero-sub {
-      font-size: clamp(16px, 2vw, 19px);
+      font-size: clamp(18px, 2.2vw, 21px);
       font-weight: 300;
       line-height: 1.6;
       color: rgba(255,255,255,0.7);
@@ -374,7 +388,31 @@
     #diagnostico {
       background: var(--ln);
       padding: 128px 0;
+      position: relative;
+      overflow: hidden;
     }
+    .diag-blob {
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(70px);
+      pointer-events: none;
+      z-index: 0;
+      opacity: 0.6;
+      animation: liquidDrift 18s ease-in-out infinite;
+    }
+    .diag-blob.a {
+      top: -12%; left: -8%;
+      width: 40vw; height: 40vw;
+      background: radial-gradient(circle, rgba(74,102,112,0.32) 0%, transparent 70%);
+    }
+    .diag-blob.b {
+      bottom: -18%; right: -10%;
+      width: 46vw; height: 46vw;
+      background: radial-gradient(circle, rgba(232,221,208,0.65) 0%, transparent 70%);
+      animation-delay: -7s;
+      animation-duration: 22s;
+    }
+    #diagnostico .container { position: relative; z-index: 1; }
     .diag-header { margin-bottom: 72px; }
     .problem-grid {
       display: grid;
@@ -389,6 +427,36 @@
       .problem-grid > *:last-child { grid-column: auto; }
     }
     .prob-wrap { position: relative; }
+
+    /* ── Liquid Glass (iOS 17-style) problem cards ── */
+    #diagnostico .win {
+      background: rgba(255,255,255,0.5);
+      border: 0.5px solid rgba(255,255,255,0.65);
+      border-radius: 22px;
+      backdrop-filter: blur(26px) saturate(200%);
+      -webkit-backdrop-filter: blur(26px) saturate(200%);
+      box-shadow: 0 24px 60px rgba(30,53,64,0.16), inset 0 1px 0 rgba(255,255,255,0.75);
+      position: relative;
+    }
+    #diagnostico .win::before {
+      content: '';
+      position: absolute;
+      top: -60%; left: -20%;
+      width: 55%; height: 220%;
+      background: linear-gradient(115deg, transparent 40%, rgba(255,255,255,0.6) 50%, transparent 60%);
+      animation: liquidSheen 8s ease-in-out infinite;
+      pointer-events: none;
+      z-index: 2;
+    }
+    #diagnostico .win-bar {
+      background: rgba(255,255,255,0.4);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border-bottom: 0.5px solid rgba(255,255,255,0.5);
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .diag-blob, #diagnostico .win::before { animation: none; }
+    }
     .prob-badge {
       position: absolute;
       top: -12px; left: 18px;
@@ -433,7 +501,7 @@
       padding: 0 20px;
     }
     .prob-why {
-      font-size: 14px;
+      font-size: 15px;
       line-height: 1.65;
       color: var(--dn);
     }
@@ -482,8 +550,8 @@
       font-size: 16px;
       flex-shrink: 0;
     }
-    .sl-name { font-size: 14px; font-weight: 600; color: rgba(255,255,255,0.85); letter-spacing: -0.1px; }
-    .sl-desc { font-size: 12px; color: rgba(255,255,255,0.35); margin-top: 2px; }
+    .sl-name { font-size: 15px; font-weight: 600; color: rgba(255,255,255,0.85); letter-spacing: -0.1px; }
+    .sl-desc { font-size: 13px; color: rgba(255,255,255,0.35); margin-top: 2px; }
 
     .pages-grid {
       display: grid;
@@ -527,7 +595,7 @@
       letter-spacing: -0.2px;
       margin-bottom: 10px;
     }
-    .pg-why { font-size: 13px; line-height: 1.65; color: rgba(255,255,255,0.38); }
+    .pg-why { font-size: 14px; line-height: 1.65; color: rgba(255,255,255,0.38); }
 
     /* ════════════════════════════════════
        REBRAND
@@ -590,7 +658,7 @@
     }
     .antes .rb-dot { background: #FF5F57; }
     .depois .rb-dot { background: #28C840; }
-    .rb-it-text { font-size: 14px; line-height: 1.55; }
+    .rb-it-text { font-size: 15px; line-height: 1.55; }
     .antes .rb-it-text { color: rgba(0,0,0,0.44); }
     .depois .rb-it-text { color: rgba(255,255,255,0.55); }
 
@@ -654,8 +722,8 @@
       color: rgba(255,255,255,0.35);
       margin-bottom: 2px;
     }
-    .notif-title { font-size: 13px; font-weight: 600; color: rgba(255,255,255,0.88); }
-    .notif-sub { font-size: 12px; color: rgba(255,255,255,0.38); line-height: 1.4; margin-top: 2px; }
+    .notif-title { font-size: 14px; font-weight: 600; color: rgba(255,255,255,0.88); }
+    .notif-sub { font-size: 13px; color: rgba(255,255,255,0.38); line-height: 1.4; margin-top: 2px; }
     .notif-time { font-size: 11px; color: rgba(255,255,255,0.25); flex-shrink: 0; }
 
     .flow-box {
@@ -698,8 +766,8 @@
     }
     .flow-step:last-child .flow-connector-line { display: none; }
     .flow-content { flex: 1; }
-    .flow-step-title { font-size: 15px; font-weight: 500; color: rgba(255,255,255,0.85); margin-bottom: 5px; }
-    .flow-step-desc { font-size: 13px; color: rgba(255,255,255,0.36); line-height: 1.6; }
+    .flow-step-title { font-size: 16px; font-weight: 500; color: rgba(255,255,255,0.85); margin-bottom: 5px; }
+    .flow-step-desc { font-size: 14px; color: rgba(255,255,255,0.36); line-height: 1.6; }
 
     /* ════════════════════════════════════
        INVESTIMENTO
@@ -763,7 +831,7 @@
     .sec .inv-div { background: rgba(0,0,0,0.07); }
     .inv-item {
       display: flex; align-items: flex-start; gap: 10px;
-      font-size: 13px;
+      font-size: 14px;
       padding: 9px 0;
       border-bottom: 0.5px solid;
       line-height: 1.5;
@@ -804,7 +872,7 @@
       margin-bottom: 12px;
     }
     .cta-sub {
-      font-size: 15px;
+      font-size: 16px;
       color: rgba(255,255,255,0.35);
       line-height: 1.5;
       margin-bottom: 32px;
@@ -852,11 +920,11 @@
   <div id="menubar">
     <span class="mb-apple">&#xF8FF;</span>
     <span class="mb-brand">Mari Manfrediny</span>
-    <span class="mb-item">Proposta</span>
-    <span class="mb-item">Diagnóstico</span>
-    <span class="mb-item">Solução</span>
-    <span class="mb-item">LinkedIn</span>
-    <span class="mb-item">Investimento</span>
+    <a class="mb-item" href="#hero">Proposta</a>
+    <a class="mb-item" href="#diagnostico">Diagnóstico</a>
+    <a class="mb-item" href="#estrutura">Solução</a>
+    <a class="mb-item" href="#linkedin">LinkedIn</a>
+    <a class="mb-item" href="#investimento">Investimento</a>
     <div class="mb-spacer"></div>
     <div class="mb-right">
       <span>&#9679; ao vivo</span>
@@ -876,8 +944,8 @@
     <div class="hero-glass" data-reveal>
       <div class="hero-label" data-reveal data-delay="1">Proposta exclusiva · Socicarril · 2026</div>
 
-      <h1 class="hero-hl" data-reveal data-delay="2">
-        24 anos<br>de reputação.<br>O site ainda<br><em>não confirma.</em>
+      <h1 class="hero-hl hero-hl-md" data-reveal data-delay="2">
+        24 anos de reputação.<br>Certificada desde 2012.<br>O site ainda<br><em>não mostra nada disso.</em>
       </h1>
 
       <div class="hero-divider" data-reveal data-delay="3"></div>
@@ -903,6 +971,8 @@
        DIAGNÓSTICO
   ════════════════════════════════════════════════════ -->
   <section id="diagnostico">
+    <div class="diag-blob a"></div>
+    <div class="diag-blob b"></div>
     <div class="container">
       <div class="diag-header">
         <div class="s-tag" data-reveal>O diagnóstico</div>
@@ -925,7 +995,7 @@
               <div class="win-title">Homepage — slider principal</div>
             </div>
             <div class="prob-shot">
-              <img src="problema-1.jpg" alt="Print do slider principal do socicarril.pt" loading="lazy" onerror="this.style.display='none';this.parentElement.classList.add('img-missing')">
+              <img src="problema1.png" alt="Print do slider principal do socicarril.pt" loading="lazy" onerror="this.style.display='none';this.parentElement.classList.add('img-missing')">
             </div>
             <div class="prob-body">
               <p class="prob-why">O slider ocupa 100% do ecrã e é o primeiro — e único — conteúdo que o visitante vê. Em vez de comunicar quem é a Socicarril, exibe o placeholder do construtor de sites. Quem chega pela primeira vez não consegue perceber o que a empresa faz.</p>
@@ -943,13 +1013,13 @@
                 <div class="tl tl-y"></div>
                 <div class="tl tl-g"></div>
               </div>
-              <div class="win-title">Projetos — galeria sem contexto</div>
+              <div class="win-title">Máquinas — fotos sem informação técnica</div>
             </div>
             <div class="prob-shot">
-              <img src="problema-2.jpg" alt="Print da página de projetos do socicarril.pt" loading="lazy" onerror="this.style.display='none';this.parentElement.classList.add('img-missing')">
+              <img src="problema2.png" alt="Print da galeria de máquinas do socicarril.pt" loading="lazy" onerror="this.style.display='none';this.parentElement.classList.add('img-missing')">
             </div>
             <div class="prob-body">
-              <p class="prob-why">As fotos existem mas não contam a história. Quem foi o cliente? Qual a dimensão do projeto? Qual o resultado? Um portfólio sem narrativa é uma galeria de imagens, não uma prova de competência.</p>
+              <p class="prob-why">As fotos existem mas sem objetivo. Qual a capacidade técnica daquela máquina? Qual o benefício para o projeto? Um portfólio sem narrativa é uma galeria de imagens, não uma prova de excelência na entrega.</p>
             </div>
           </div>
         </div>
@@ -967,7 +1037,7 @@
               <div class="win-title">Clientes — nomes sem identidade visual</div>
             </div>
             <div class="prob-shot">
-              <img src="problema-3.jpg" alt="Print da página de clientes do socicarril.pt" loading="lazy" onerror="this.style.display='none';this.parentElement.classList.add('img-missing')">
+              <img src="problema3.png" alt="Print da página de clientes do socicarril.pt" loading="lazy" onerror="this.style.display='none';this.parentElement.classList.add('img-missing')">
             </div>
             <div class="prob-body">
               <p class="prob-why">A Socicarril trabalha com os maiores do setor. Esses nomes têm peso, têm logótipos reconhecíveis, têm credibilidade acumulada. Apresentados como uma lista de texto, perdem todo o impacto visual que podiam ter.</p>
@@ -1015,7 +1085,7 @@
             <div class="sl-ic" style="background:#334855;">⚙️</div>
             <div>
               <div class="sl-name">Serviços</div>
-              <div class="sl-desc">O que a Socicarril faz, em linguagem clara</div>
+              <div class="sl-desc">O que a Socicarril faz — com a frota de máquinas própria</div>
             </div>
           </div>
           <div class="sl-result">
@@ -1056,7 +1126,7 @@
         <div class="pg-card" data-reveal data-delay="3">
           <div class="pg-num">03</div>
           <div class="pg-name">Serviços</div>
-          <p class="pg-why">Construção, conservação e renovação de vias férreas explicados com exemplos reais. O visitante identifica-se antes de entrar em contacto.</p>
+          <p class="pg-why">Construção, conservação e renovação de vias férreas explicadas com exemplos reais — incluindo a frota de máquinas própria, com foto e ficha técnica de cada equipamento. Prova de capacidade operacional, não só de intenção.</p>
         </div>
         <div class="pg-card" data-reveal data-delay="4">
           <div class="pg-num">04</div>
@@ -1348,10 +1418,10 @@
           <p style="font-size: 13px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--ar); margin-bottom: 32px;" data-reveal data-delay="2">Estrategista Digital</p>
 
           <div data-reveal data-delay="3" style="display: flex; flex-direction: column; gap: 20px;">
-            <p style="font-size: clamp(16px, 1.8vw, 18px); line-height: 1.7; color: var(--cl);">
+            <p style="font-size: clamp(17px, 1.9vw, 19px); line-height: 1.7; color: var(--cl);">
               Analiso como o marketing digital pode trabalhar a favor do seu negócio. Com um benchmark sólido, aproximo a sua empresa do objetivo — mais faturamento, mais alcance, mais credibilidade e um processo comercial mais eficiente.
             </p>
-            <p style="font-size: clamp(16px, 1.8vw, 18px); line-height: 1.7; color: var(--cl);">
+            <p style="font-size: clamp(17px, 1.9vw, 19px); line-height: 1.7; color: var(--cl);">
               Cinco anos de construção de uma metodologia em mais de 60 projetos no Brasil.
             </p>
           </div>
