@@ -374,7 +374,31 @@
     #diagnostico {
       background: var(--ln);
       padding: 128px 0;
+      position: relative;
+      overflow: hidden;
     }
+    .diag-blob {
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(70px);
+      pointer-events: none;
+      z-index: 0;
+      opacity: 0.6;
+      animation: liquidDrift 18s ease-in-out infinite;
+    }
+    .diag-blob.a {
+      top: -12%; left: -8%;
+      width: 40vw; height: 40vw;
+      background: radial-gradient(circle, rgba(74,102,112,0.32) 0%, transparent 70%);
+    }
+    .diag-blob.b {
+      bottom: -18%; right: -10%;
+      width: 46vw; height: 46vw;
+      background: radial-gradient(circle, rgba(232,221,208,0.65) 0%, transparent 70%);
+      animation-delay: -7s;
+      animation-duration: 22s;
+    }
+    #diagnostico .container { position: relative; z-index: 1; }
     .diag-header { margin-bottom: 72px; }
     .problem-grid {
       display: grid;
@@ -389,6 +413,36 @@
       .problem-grid > *:last-child { grid-column: auto; }
     }
     .prob-wrap { position: relative; }
+
+    /* ── Liquid Glass (iOS 17-style) problem cards ── */
+    #diagnostico .win {
+      background: rgba(255,255,255,0.5);
+      border: 0.5px solid rgba(255,255,255,0.65);
+      border-radius: 22px;
+      backdrop-filter: blur(26px) saturate(200%);
+      -webkit-backdrop-filter: blur(26px) saturate(200%);
+      box-shadow: 0 24px 60px rgba(30,53,64,0.16), inset 0 1px 0 rgba(255,255,255,0.75);
+      position: relative;
+    }
+    #diagnostico .win::before {
+      content: '';
+      position: absolute;
+      top: -60%; left: -20%;
+      width: 55%; height: 220%;
+      background: linear-gradient(115deg, transparent 40%, rgba(255,255,255,0.6) 50%, transparent 60%);
+      animation: liquidSheen 8s ease-in-out infinite;
+      pointer-events: none;
+      z-index: 2;
+    }
+    #diagnostico .win-bar {
+      background: rgba(255,255,255,0.4);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border-bottom: 0.5px solid rgba(255,255,255,0.5);
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .diag-blob, #diagnostico .win::before { animation: none; }
+    }
     .prob-badge {
       position: absolute;
       top: -12px; left: 18px;
@@ -903,6 +957,8 @@
        DIAGNÓSTICO
   ════════════════════════════════════════════════════ -->
   <section id="diagnostico">
+    <div class="diag-blob a"></div>
+    <div class="diag-blob b"></div>
     <div class="container">
       <div class="diag-header">
         <div class="s-tag" data-reveal>O diagnóstico</div>
@@ -943,13 +999,13 @@
                 <div class="tl tl-y"></div>
                 <div class="tl tl-g"></div>
               </div>
-              <div class="win-title">Projetos — galeria sem contexto</div>
+              <div class="win-title">Máquinas — fotos sem informação técnica</div>
             </div>
             <div class="prob-shot">
-              <img src="problema-2.jpg" alt="Print da página de projetos do socicarril.pt" loading="lazy" onerror="this.style.display='none';this.parentElement.classList.add('img-missing')">
+              <img src="problema-2.jpg" alt="Print da galeria de máquinas do socicarril.pt" loading="lazy" onerror="this.style.display='none';this.parentElement.classList.add('img-missing')">
             </div>
             <div class="prob-body">
-              <p class="prob-why">As fotos existem mas não contam a história. Quem foi o cliente? Qual a dimensão do projeto? Qual o resultado? Um portfólio sem narrativa é uma galeria de imagens, não uma prova de competência.</p>
+              <p class="prob-why">As fotos existem mas sem objetivo. Qual a capacidade técnica daquela máquina? Qual o benefício para o projeto? Um portfólio sem narrativa é uma galeria de imagens, não uma prova de excelência na entrega.</p>
             </div>
           </div>
         </div>
@@ -1015,7 +1071,7 @@
             <div class="sl-ic" style="background:#334855;">⚙️</div>
             <div>
               <div class="sl-name">Serviços</div>
-              <div class="sl-desc">O que a Socicarril faz, em linguagem clara</div>
+              <div class="sl-desc">O que a Socicarril faz — com a frota de máquinas própria</div>
             </div>
           </div>
           <div class="sl-result">
@@ -1056,7 +1112,7 @@
         <div class="pg-card" data-reveal data-delay="3">
           <div class="pg-num">03</div>
           <div class="pg-name">Serviços</div>
-          <p class="pg-why">Construção, conservação e renovação de vias férreas explicados com exemplos reais. O visitante identifica-se antes de entrar em contacto.</p>
+          <p class="pg-why">Construção, conservação e renovação de vias férreas explicadas com exemplos reais — incluindo a frota de máquinas própria, com foto e ficha técnica de cada equipamento. Prova de capacidade operacional, não só de intenção.</p>
         </div>
         <div class="pg-card" data-reveal data-delay="4">
           <div class="pg-num">04</div>
