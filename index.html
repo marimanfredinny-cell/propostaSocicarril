@@ -144,6 +144,7 @@
       text-transform: uppercase;
       color: var(--ar);
       margin-bottom: 14px;
+      text-align: center;
     }
     .s-tag.light { color: var(--nv); }
 
@@ -154,6 +155,7 @@
       line-height: 1.0;
       letter-spacing: -0.04em;
       margin-bottom: 20px;
+      text-align: center;
     }
     .s-head.white { color: #fff; }
 
@@ -164,8 +166,13 @@
       line-height: 1.65;
       color: var(--cl);
       max-width: 520px;
+      margin: 0 auto;
+      text-align: center;
     }
     .s-sub.light { color: rgba(255,255,255,0.38); }
+
+    /* Bio section keeps its natural left-aligned reading flow */
+    #sobre .s-tag, #sobre .s-head { text-align: left; }
 
     /* ════════════════════════════════════
        HERO
@@ -174,46 +181,104 @@
       min-height: 100svh;
       background: var(--dn);
       display: flex;
-      flex-direction: column;
-      justify-content: flex-end;
-      padding: 64px 64px 80px;
+      align-items: center;
+      justify-content: center;
+      padding: 120px 24px;
       position: relative;
       overflow: hidden;
+      text-align: center;
     }
-    #hero::before {
+    .hero-bg {
+      position: absolute;
+      inset: 0;
+      background-image: url("fundo da hero.jpeg");
+      background-size: cover;
+      background-position: center;
+      filter: saturate(105%) brightness(0.85) blur(1px);
+      transform: scale(1.03);
+      z-index: 0;
+    }
+    .hero-bg::after {
       content: '';
       position: absolute;
-      top: -20%; right: -10%;
-      width: 70vw; height: 70vw;
-      border-radius: 50%;
-      background: radial-gradient(circle, rgba(74,102,112,0.22) 0%, transparent 65%);
-      pointer-events: none;
+      inset: 0;
+      background:
+        radial-gradient(circle at 30% 20%, rgba(107,133,144,0.35) 0%, transparent 55%),
+        linear-gradient(180deg, rgba(15,25,31,0.55) 0%, rgba(15,25,31,0.78) 55%, rgba(10,18,23,0.9) 100%);
     }
-    #hero::after {
+    .hero-liquid {
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(60px);
+      z-index: 0;
+      pointer-events: none;
+      opacity: 0.55;
+      animation: liquidDrift 16s ease-in-out infinite;
+    }
+    .hero-liquid.a {
+      top: -10%; left: -8%;
+      width: 46vw; height: 46vw;
+      background: radial-gradient(circle, rgba(184,200,204,0.35) 0%, transparent 70%);
+    }
+    .hero-liquid.b {
+      bottom: -18%; right: -10%;
+      width: 52vw; height: 52vw;
+      background: radial-gradient(circle, rgba(74,102,112,0.4) 0%, transparent 70%);
+      animation-delay: -6s;
+      animation-duration: 20s;
+    }
+    @keyframes liquidDrift {
+      0%, 100% { transform: translate(0, 0) scale(1); }
+      33% { transform: translate(3%, 4%) scale(1.08); }
+      66% { transform: translate(-3%, -2%) scale(0.96); }
+    }
+    .hero-glass {
+      position: relative;
+      z-index: 1;
+      width: 100%;
+      max-width: 680px;
+      margin: 0 auto;
+      padding: 56px 64px;
+      border-radius: 32px;
+      background: linear-gradient(160deg, rgba(255,255,255,0.16), rgba(255,255,255,0.04));
+      border: 0.5px solid rgba(255,255,255,0.28);
+      backdrop-filter: blur(28px) saturate(180%);
+      -webkit-backdrop-filter: blur(28px) saturate(180%);
+      box-shadow: 0 24px 64px rgba(0,0,0,0.35), inset 0 1px 0 rgba(255,255,255,0.35);
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    .hero-glass::before {
       content: '';
       position: absolute;
-      bottom: -15%; left: 5%;
-      width: 50vw; height: 50vw;
-      border-radius: 50%;
-      background: radial-gradient(circle, rgba(30,53,64,0.5) 0%, transparent 70%);
+      top: -60%; left: -20%;
+      width: 70%; height: 220%;
+      background: linear-gradient(115deg, transparent 40%, rgba(255,255,255,0.14) 50%, transparent 60%);
+      animation: liquidSheen 7s ease-in-out infinite;
       pointer-events: none;
+    }
+    @keyframes liquidSheen {
+      0%, 100% { transform: translateX(-30%) rotate(8deg); opacity: 0.5; }
+      50% { transform: translateX(60%) rotate(8deg); opacity: 0.9; }
     }
     .hero-label {
       font-size: 12px;
       font-weight: 600;
       letter-spacing: 0.1em;
       text-transform: uppercase;
-      color: var(--ar);
-      margin-bottom: 36px;
+      color: var(--nv);
+      margin-bottom: 28px;
       position: relative; z-index: 1;
     }
     .hero-hl {
-      font-size: clamp(58px, 9vw, 110px);
+      font-size: clamp(42px, 7vw, 84px);
       font-weight: 200;
-      line-height: 0.95;
-      letter-spacing: -0.05em;
+      line-height: 0.98;
+      letter-spacing: -0.04em;
       color: #fff;
-      margin-bottom: 40px;
+      margin-bottom: 32px;
       position: relative; z-index: 1;
     }
     .hero-hl em {
@@ -222,19 +287,19 @@
     }
     .hero-divider {
       width: 100%;
-      max-width: 600px;
+      max-width: 340px;
       height: 0.5px;
-      background: rgba(255,255,255,0.12);
-      margin-bottom: 32px;
+      background: rgba(255,255,255,0.25);
+      margin: 0 auto 28px;
       position: relative; z-index: 1;
     }
     .hero-sub {
-      font-size: clamp(17px, 2.2vw, 22px);
+      font-size: clamp(16px, 2vw, 19px);
       font-weight: 300;
       line-height: 1.6;
-      color: rgba(255,255,255,0.42);
-      max-width: 520px;
-      margin-bottom: 48px;
+      color: rgba(255,255,255,0.7);
+      max-width: 480px;
+      margin: 0 auto 36px;
       position: relative; z-index: 1;
     }
     .hero-badge {
@@ -290,8 +355,17 @@
       50% { opacity: 1; transform: scaleY(1.05); }
     }
     @media (max-width: 768px) {
-      #hero { padding: 60px 24px 64px; }
+      #hero { padding: 96px 16px; }
+      .hero-glass { padding: 40px 26px; border-radius: 24px; }
+      .hero-bg { filter: saturate(105%) brightness(0.8) blur(0.5px); }
       .scroll-cue { display: none; }
+    }
+    @media (max-width: 420px) {
+      .hero-glass { padding: 32px 20px; }
+      .hero-divider { max-width: 220px; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .hero-liquid, .hero-glass::before { animation: none; }
     }
 
     /* ════════════════════════════════════
@@ -328,25 +402,35 @@
       padding: 4px 12px;
       border-radius: 20px;
     }
-    .prob-body { padding: 28px 28px 24px; }
-    .prob-caption {
-      font-size: 10px;
+    .prob-body { padding: 24px 28px 24px; }
+    .prob-shot {
+      position: relative;
+      width: 100%;
+      aspect-ratio: 16 / 10;
+      overflow: hidden;
+      background: linear-gradient(135deg, rgba(0,0,0,0.05), rgba(0,0,0,0.1));
+    }
+    .prob-shot img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: top center;
+      display: block;
+    }
+    .prob-shot.img-missing::before {
+      content: 'Print do site em breve';
+      position: absolute;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 11px;
       font-weight: 600;
       letter-spacing: 0.08em;
       text-transform: uppercase;
       color: var(--gray);
-      margin-bottom: 14px;
-    }
-    .prob-quote {
-      font-size: 14px;
-      line-height: 1.6;
-      color: rgba(60,60,67,0.55);
-      font-style: italic;
-      padding: 16px 18px;
-      background: rgba(255,95,87,0.06);
-      border-left: 3px solid #FF5F57;
-      border-radius: 0 8px 8px 0;
-      margin-bottom: 18px;
+      text-align: center;
+      padding: 0 20px;
     }
     .prob-why {
       font-size: 14px;
@@ -533,6 +617,26 @@
       border-radius: 14px;
       padding: 14px 16px;
       display: flex; align-items: flex-start; gap: 12px;
+      transition: transform 0.3s ease, border-color 0.3s ease;
+    }
+    .notif.visible {
+      animation: notifFloat 5s ease-in-out infinite;
+      animation-delay: 0.6s;
+    }
+    .notif:hover {
+      transform: translateY(-4px);
+      border-color: rgba(255,255,255,0.2);
+    }
+    .notif-grid .notif:nth-child(1) { animation-delay: 0.6s; }
+    .notif-grid .notif:nth-child(2) { animation-delay: 1.3s; }
+    .notif-grid .notif:nth-child(3) { animation-delay: 2s; }
+    .notif-grid .notif:nth-child(4) { animation-delay: 2.7s; }
+    @keyframes notifFloat {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-5px); }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .notif.visible { animation: none; }
     }
     .notif-ic {
       width: 38px; height: 38px;
@@ -765,21 +869,27 @@
        HERO
   ════════════════════════════════════════════════════ -->
   <section id="hero">
-    <div class="hero-label" data-reveal>Proposta exclusiva · Socicarril · 2026</div>
+    <div class="hero-bg"></div>
+    <div class="hero-liquid a"></div>
+    <div class="hero-liquid b"></div>
 
-    <h1 class="hero-hl" data-reveal data-delay="1">
-      24 anos<br>de reputação.<br>O site ainda<br><em>não confirma.</em>
-    </h1>
+    <div class="hero-glass" data-reveal>
+      <div class="hero-label" data-reveal data-delay="1">Proposta exclusiva · Socicarril · 2026</div>
 
-    <div class="hero-divider" data-reveal data-delay="2"></div>
+      <h1 class="hero-hl" data-reveal data-delay="2">
+        24 anos<br>de reputação.<br>O site ainda<br><em>não confirma.</em>
+      </h1>
 
-    <p class="hero-sub" data-reveal data-delay="3">
-      O seu negócio cresce pelo boca a boca. Quando alguém vai confirmar o que ouviu, o site tem de estar à altura da empresa que lhe descreveram.
-    </p>
+      <div class="hero-divider" data-reveal data-delay="3"></div>
 
-    <div class="hero-badge" data-reveal data-delay="4">
-      <div class="badge-dot"></div>
-      <span class="badge-txt">empresas.marimanfredinny.com</span>
+      <p class="hero-sub" data-reveal data-delay="4">
+        O cliente que vem por indicação também visita o seu site.
+      </p>
+
+      <div class="hero-badge" data-reveal data-delay="5">
+        <div class="badge-dot"></div>
+        <span class="badge-txt">empresas.marimanfredinny.com</span>
+      </div>
     </div>
 
     <div class="scroll-cue">
@@ -797,7 +907,7 @@
       <div class="diag-header">
         <div class="s-tag" data-reveal>O diagnóstico</div>
         <h2 class="s-head" data-reveal data-delay="1">O que encontrei<br>no socicarril.pt</h2>
-        <p class="s-sub" data-reveal data-delay="2">Três pontos concretos que impedem o site de estar à altura da empresa que você construiu.</p>
+        <p class="s-sub" data-reveal data-delay="2">Pontos que impedem o site de ser útil para a credibilidade da Socicarril.</p>
       </div>
 
       <div class="problem-grid">
@@ -814,14 +924,10 @@
               </div>
               <div class="win-title">Homepage — slider principal</div>
             </div>
+            <div class="prob-shot">
+              <img src="problema-1.jpg" alt="Print do slider principal do socicarril.pt" loading="lazy" onerror="this.style.display='none';this.parentElement.classList.add('img-missing')">
+            </div>
             <div class="prob-body">
-              <div class="prob-caption">Conteúdo real dos 15 slides da homepage</div>
-              <div class="prob-quote">
-                "Título do Slide<br>
-                Escreva sua legenda aqui<br>
-                <u>Botão</u>"<br><br>
-                <span style="opacity:0.7">× repetido em todos os 15 slides</span>
-              </div>
               <p class="prob-why">O slider ocupa 100% do ecrã e é o primeiro — e único — conteúdo que o visitante vê. Em vez de comunicar quem é a Socicarril, exibe o placeholder do construtor de sites. Quem chega pela primeira vez não consegue perceber o que a empresa faz.</p>
             </div>
           </div>
@@ -839,14 +945,10 @@
               </div>
               <div class="win-title">Projetos — galeria sem contexto</div>
             </div>
+            <div class="prob-shot">
+              <img src="problema-2.jpg" alt="Print da página de projetos do socicarril.pt" loading="lazy" onerror="this.style.display='none';this.parentElement.classList.add('img-missing')">
+            </div>
             <div class="prob-body">
-              <div class="prob-caption">Estrutura atual da página de projetos</div>
-              <div class="prob-quote">
-                [Foto de via-férrea]<br>
-                [Foto de via-férrea]<br>
-                [Foto de via-férrea]<br><br>
-                <span style="opacity:0.7">Sem informação. Sem instrução de uso. Sem contexto.</span>
-              </div>
               <p class="prob-why">As fotos existem mas não contam a história. Quem foi o cliente? Qual a dimensão do projeto? Qual o resultado? Um portfólio sem narrativa é uma galeria de imagens, não uma prova de competência.</p>
             </div>
           </div>
@@ -864,11 +966,10 @@
               </div>
               <div class="win-title">Clientes — nomes sem identidade visual</div>
             </div>
+            <div class="prob-shot">
+              <img src="problema-3.jpg" alt="Print da página de clientes do socicarril.pt" loading="lazy" onerror="this.style.display='none';this.parentElement.classList.add('img-missing')">
+            </div>
             <div class="prob-body">
-              <div class="prob-caption">Conteúdo atual da página de clientes</div>
-              <div class="prob-quote" style="column-count:2; column-gap: 20px; line-height:2.2;">
-                Infraestruturas de Portugal, S.A.&nbsp;&nbsp; Mota-Engil Railway Engineering, S.A.&nbsp;&nbsp; Sacyr Neopul, S.A.&nbsp;&nbsp; Metropolitano de Lisboa, E.P.E.&nbsp;&nbsp; CP - Comboios de Portugal, E.P.E.
-              </div>
               <p class="prob-why">A Socicarril trabalha com os maiores do setor. Esses nomes têm peso, têm logótipos reconhecíveis, têm credibilidade acumulada. Apresentados como uma lista de texto, perdem todo o impacto visual que podiam ter.</p>
             </div>
           </div>
@@ -1163,7 +1264,7 @@
           <div class="inv-item"><div class="inv-dot"></div>Copywriting em Português</div>
           <div class="inv-item"><div class="inv-dot"></div>CMS para atualização autónoma</div>
           <div class="inv-item"><div class="inv-dot"></div>Google Meu Negócio (contactos e horário comercial)</div>
-          <div class="inv-item"><div class="inv-dot"></div>SEO técnico e Google Analytics</div>
+          <div class="inv-item"><div class="inv-dot"></div>SEO on-page e Google Analytics</div>
           <div class="inv-item"><div class="inv-dot"></div>Sessão de formação incluída</div>
         </div>
 
@@ -1251,13 +1352,13 @@
               Analiso como o marketing digital pode trabalhar a favor do seu negócio. Com um benchmark sólido, aproximo a sua empresa do objetivo — mais faturamento, mais alcance, mais credibilidade e um processo comercial mais eficiente.
             </p>
             <p style="font-size: clamp(16px, 1.8vw, 18px); line-height: 1.7; color: var(--cl);">
-              Cinco anos de trabalho assim, com mais de 25 projetos no Brasil que validaram os métodos de gestão estratégica de marketing que trago para cada proposta.
+              Cinco anos de construção de uma metodologia em mais de 60 projetos no Brasil.
             </p>
           </div>
 
           <div data-reveal data-delay="4" style="display: flex; gap: 40px; margin-top: 48px; padding-top: 40px; border-top: 0.5px solid rgba(0,0,0,0.08);">
             <div>
-              <div style="font-size: 42px; font-weight: 200; letter-spacing: -0.05em; color: var(--dn); line-height: 1;">+25</div>
+              <div style="font-size: 42px; font-weight: 200; letter-spacing: -0.05em; color: var(--dn); line-height: 1;">+60</div>
               <div style="font-size: 12px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--ar); margin-top: 6px;">projetos</div>
             </div>
             <div>
