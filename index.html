@@ -90,6 +90,7 @@
     [data-delay="4"] { transition-delay: 0.28s; }
     [data-delay="5"] { transition-delay: 0.35s; }
     [data-delay="6"] { transition-delay: 0.42s; }
+    [data-delay="7"] { transition-delay: 0.49s; }
 
     /* ── Traffic Lights ── */
     .tl-group { display: flex; align-items: center; gap: 7px; flex-shrink: 0; }
@@ -246,7 +247,7 @@
       position: relative;
       z-index: 1;
       width: 100%;
-      max-width: 680px;
+      max-width: 760px;
       margin: 0 auto;
       padding: 56px 64px;
       border-radius: 32px;
@@ -292,8 +293,8 @@
       position: relative; z-index: 1;
     }
     .hero-hl.hero-hl-md {
-      font-size: clamp(30px, 4.6vw, 54px);
-      line-height: 1.15;
+      font-size: clamp(26px, 3.6vw, 42px);
+      line-height: 1.25;
     }
     .hero-hl em {
       font-style: normal;
@@ -945,7 +946,7 @@
       <div class="hero-label" data-reveal data-delay="1">Proposta exclusiva · Socicarril · 2026</div>
 
       <h1 class="hero-hl hero-hl-md" data-reveal data-delay="2">
-        24 anos de reputação.<br>Certificada desde 2012.<br>O site ainda<br><em>não mostra nada disso.</em>
+        A autoridade da Socicarril<br>já foi construída no mercado.<br>Ela só não aparece<br><em>quando o cliente abre<br>o seu site.</em>
       </h1>
 
       <div class="hero-divider" data-reveal data-delay="3"></div>
@@ -1013,13 +1014,13 @@
                 <div class="tl tl-y"></div>
                 <div class="tl tl-g"></div>
               </div>
-              <div class="win-title">Máquinas — fotos sem informação técnica</div>
+              <div class="win-title">Frota de Máquinas — fotos sem informação técnica</div>
             </div>
             <div class="prob-shot">
               <img src="problema2.png" alt="Print da galeria de máquinas do socicarril.pt" loading="lazy" onerror="this.style.display='none';this.parentElement.classList.add('img-missing')">
             </div>
             <div class="prob-body">
-              <p class="prob-why">As fotos existem mas sem objetivo. Qual a capacidade técnica daquela máquina? Qual o benefício para o projeto? Um portfólio sem narrativa é uma galeria de imagens, não uma prova de excelência na entrega.</p>
+              <p class="prob-why">As fotos existem mas sem objetivo. Qual a função da máquina na obra? As vantagens precisam ser claras. Um portfólio sem narrativa é uma galeria de imagens, não uma prova social.</p>
             </div>
           </div>
         </div>
@@ -1040,7 +1041,7 @@
               <img src="problema3.png" alt="Print da página de clientes do socicarril.pt" loading="lazy" onerror="this.style.display='none';this.parentElement.classList.add('img-missing')">
             </div>
             <div class="prob-body">
-              <p class="prob-why">A Socicarril trabalha com os maiores do setor. Esses nomes têm peso, têm logótipos reconhecíveis, têm credibilidade acumulada. Apresentados como uma lista de texto, perdem todo o impacto visual que podiam ter.</p>
+              <p class="prob-why">A Socicarril trabalha com os maiores do setor. Esses nomes têm peso, têm logótipos reconhecíveis. Apresentados como uma lista de texto, perdem todo o impacto visual que podiam ter.</p>
             </div>
           </div>
         </div>
@@ -1057,8 +1058,8 @@
     <div class="container">
       <div style="margin-bottom:72px;">
         <div class="s-tag light" data-reveal>A estrutura ideal</div>
-        <h2 class="s-head white" data-reveal data-delay="1">O que um visitante<br>precisa encontrar<br>em 30 segundos.</h2>
-        <p class="s-sub light" data-reveal data-delay="2">Seis páginas. Cada uma com um papel claro dentro do portfólio.</p>
+        <h2 class="s-head white" data-reveal data-delay="1">A estrutura de um<br>site portfólio ideal.</h2>
+        <p class="s-sub light" data-reveal data-delay="2">Poucas páginas. Cada uma conduzindo o usuário e quebrando objeções.</p>
       </div>
 
       <div class="spotlight" data-reveal data-delay="1">
@@ -1085,7 +1086,14 @@
             <div class="sl-ic" style="background:#334855;">⚙️</div>
             <div>
               <div class="sl-name">Serviços</div>
-              <div class="sl-desc">O que a Socicarril faz — com a frota de máquinas própria</div>
+              <div class="sl-desc">O que a Socicarril faz, em linguagem clara</div>
+            </div>
+          </div>
+          <div class="sl-result">
+            <div class="sl-ic" style="background:#2E4550;">🚜</div>
+            <div>
+              <div class="sl-name">Frota de Máquinas</div>
+              <div class="sl-desc">Frota própria, com foto e ficha técnica de cada equipamento</div>
             </div>
           </div>
           <div class="sl-result">
@@ -1126,20 +1134,25 @@
         <div class="pg-card" data-reveal data-delay="3">
           <div class="pg-num">03</div>
           <div class="pg-name">Serviços</div>
-          <p class="pg-why">Construção, conservação e renovação de vias férreas explicadas com exemplos reais — incluindo a frota de máquinas própria, com foto e ficha técnica de cada equipamento. Prova de capacidade operacional, não só de intenção.</p>
+          <p class="pg-why">Construção, conservação e renovação de vias férreas explicadas com exemplos reais. O visitante identifica-se antes de entrar em contacto.</p>
         </div>
         <div class="pg-card" data-reveal data-delay="4">
           <div class="pg-num">04</div>
-          <div class="pg-name">Empresa</div>
-          <p class="pg-why">A história desde 2002, a certificação de 2012, a expansão para África, os valores e a equipa. A solidez que justifica a reputação construída pelo boca a boca.</p>
+          <div class="pg-name">Frota de Máquinas</div>
+          <p class="pg-why">A frota própria, com foto e ficha técnica de cada equipamento: capacidade, ano, aplicação. Prova de capacidade operacional, não só de intenção.</p>
         </div>
         <div class="pg-card" data-reveal data-delay="5">
           <div class="pg-num">05</div>
-          <div class="pg-name">Clientes</div>
-          <p class="pg-why">Logótipos das principais empresas parceiras. Infraestruturas de Portugal, CP, Metropolitano de Lisboa apresentados com o peso visual que merecem.</p>
+          <div class="pg-name">Empresa</div>
+          <p class="pg-why">A história desde 2002, a certificação de 2012, a expansão para África, os valores e a equipa. A solidez que justifica a reputação construída pelo boca a boca.</p>
         </div>
         <div class="pg-card" data-reveal data-delay="6">
           <div class="pg-num">06</div>
+          <div class="pg-name">Clientes</div>
+          <p class="pg-why">Logótipos das principais empresas parceiras. Infraestruturas de Portugal, CP, Metropolitano de Lisboa apresentados com o peso visual que merecem.</p>
+        </div>
+        <div class="pg-card" data-reveal data-delay="7">
+          <div class="pg-num">07</div>
           <div class="pg-name">Contacto</div>
           <p class="pg-why">Formulário simples, morada, telefone e LinkedIn integrado. O passo seguinte para quem chegou por indicação e quer confirmar o que ouviu.</p>
         </div>
@@ -1155,7 +1168,7 @@
     <div class="container">
       <div style="margin-bottom:72px;">
         <div class="s-tag" data-reveal>Rebrand</div>
-        <h2 class="s-head" data-reveal data-delay="1">A identidade visual<br>tem de refletir<br>a empresa que existe.</h2>
+        <h2 class="s-head" data-reveal data-delay="1">A identidade visual<br>é fundamental na<br>percepção de uma empresa.</h2>
         <p class="s-sub" data-reveal data-delay="2">O design atual foi instalado num construtor de sites. Para uma empresa que constrói infraestruturas para o Estado português, o digital tem de estar ao mesmo nível.</p>
       </div>
 
@@ -1319,7 +1332,7 @@
       <div>
         <div class="s-tag" data-reveal>O pacote</div>
         <h2 class="s-head" data-reveal data-delay="1">Simples e direto.</h2>
-        <p class="s-sub" data-reveal data-delay="2">Um projeto único para construir a base. Uma mensalidade para manter e crescer.</p>
+        <p class="s-sub" data-reveal data-delay="2">Um projeto único para construir a base. Uma mensalidade para manter e atualizar.</p>
       </div>
 
       <div class="inv-grid">
@@ -1330,12 +1343,9 @@
           <div class="inv-period">investimento único &middot; +IVA</div>
           <div class="inv-div"></div>
           <div class="inv-item"><div class="inv-dot"></div>Design e identidade visual de raiz</div>
-          <div class="inv-item"><div class="inv-dot"></div>6 páginas responsivas (mobile + desktop)</div>
+          <div class="inv-item"><div class="inv-dot"></div>7 páginas responsivas (mobile + desktop)</div>
           <div class="inv-item"><div class="inv-dot"></div>Copywriting em Português</div>
-          <div class="inv-item"><div class="inv-dot"></div>CMS para atualização autónoma</div>
           <div class="inv-item"><div class="inv-dot"></div>Google Meu Negócio (contactos e horário comercial)</div>
-          <div class="inv-item"><div class="inv-dot"></div>SEO on-page e Google Analytics</div>
-          <div class="inv-item"><div class="inv-dot"></div>Sessão de formação incluída</div>
         </div>
 
         <div class="inv-card sec" data-reveal data-delay="2">
@@ -1346,7 +1356,6 @@
           <div class="inv-div"></div>
           <div class="inv-item"><div class="inv-dot"></div>Atualizações técnicas e segurança</div>
           <div class="inv-item"><div class="inv-dot"></div>Inserção de novos projetos</div>
-          <div class="inv-item"><div class="inv-dot"></div>Relatório mensal de performance</div>
           <div class="inv-item"><div class="inv-dot"></div>Suporte contínuo</div>
         </div>
 
