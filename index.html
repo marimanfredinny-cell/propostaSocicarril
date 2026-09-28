@@ -1679,6 +1679,17 @@
         }
       });
     });
+
+    // Link direto para uma seção de dentro da proposta do site (ex.: /index.html#diagnostico)
+    function abrirPeloEndereco() {
+      if (location.hash.length < 2) return;
+      const alvo = document.getElementById(decodeURIComponent(location.hash.slice(1)));
+      if (alvo && propostaSite.contains(alvo) && propostaSite.hidden) {
+        abrirPropostaSite(alvo);
+      }
+    }
+    abrirPeloEndereco();
+    window.addEventListener('hashchange', abrirPeloEndereco);
   </script>
 
 </body>
