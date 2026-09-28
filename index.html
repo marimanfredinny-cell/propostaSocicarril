@@ -76,6 +76,17 @@
       .mb-item { display: none; }
     }
 
+    /* ── Só para leitores de tela ── */
+    .sr-only {
+      position: absolute;
+      width: 1px; height: 1px;
+      padding: 0; margin: -1px;
+      overflow: hidden;
+      clip: rect(0, 0, 0, 0);
+      white-space: nowrap;
+      border: 0;
+    }
+
     /* ── Scroll reveal ── */
     [data-reveal] {
       opacity: 0;
@@ -1039,6 +1050,8 @@
        HERO
   ════════════════════════════════════════════════════ -->
   <section id="hero">
+    <h1 class="sr-only">Proposta Socicarril — Mariana Manfredinny</h1>
+
     <div class="hero-bg"></div>
     <div class="hero-liquid a"></div>
     <div class="hero-liquid b"></div>
@@ -1046,17 +1059,13 @@
     <div class="hero-glass" data-reveal>
       <div class="hero-label" data-reveal data-delay="1">Proposta exclusiva · Socicarril · 2026</div>
 
-      <h1 class="hero-hl hero-hl-md" data-reveal data-delay="2">
-        A autoridade da Socicarril<br>já foi construída no mercado.<br>Ela só não aparece<br><em>quando o cliente abre<br>o seu site.</em>
-      </h1>
+      <div class="hero-divider" data-reveal data-delay="2"></div>
 
-      <div class="hero-divider" data-reveal data-delay="3"></div>
-
-      <p class="hero-sub" data-reveal data-delay="4">
+      <p class="hero-sub" data-reveal data-delay="3">
         O cliente que vem por indicação também quer ver um portfólio.
       </p>
 
-      <a class="hero-badge" href="https://empresa.marimanfredinny.com/" target="_blank" rel="noopener" data-reveal data-delay="5">
+      <a class="hero-badge" href="https://empresa.marimanfredinny.com/" target="_blank" rel="noopener" data-reveal data-delay="4">
         <div class="badge-dot"></div>
         <span class="badge-txt">empresa.marimanfredinny.com</span>
       </a>
