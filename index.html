@@ -391,6 +391,62 @@
     }
 
     /* ════════════════════════════════════
+       AVISO — ABRIR PROPOSTA DO SITE
+    ════════════════════════════════════ */
+    #aviso-site {
+      background: var(--dn);
+      padding: 64px 24px;
+      text-align: center;
+      border-bottom: 0.5px solid rgba(255,255,255,0.06);
+    }
+    .aviso-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      max-width: 100%;
+      margin: 0 auto;
+      background: rgba(255,255,255,0.06);
+      border: 0.5px solid rgba(255,255,255,0.16);
+      border-radius: 40px;
+      padding: 15px 28px;
+      font-family: inherit;
+      font-size: 15px;
+      font-weight: 500;
+      line-height: 1.4;
+      color: rgba(255,255,255,0.82);
+      letter-spacing: -0.1px;
+      cursor: pointer;
+      backdrop-filter: blur(20px) saturate(150%);
+      -webkit-backdrop-filter: blur(20px) saturate(150%);
+      transition: background 0.2s, border-color 0.2s, transform 0.2s;
+    }
+    .aviso-btn:hover {
+      background: rgba(255,255,255,0.11);
+      border-color: rgba(255,255,255,0.28);
+      transform: translateY(-2px);
+    }
+    .aviso-dot {
+      width: 9px; height: 9px;
+      border-radius: 50%;
+      background: #FEBC2E;
+      box-shadow: 0 0 10px rgba(254,188,46,0.7);
+      flex-shrink: 0;
+      animation: avisoPulse 1.3s ease-in-out infinite;
+    }
+    @keyframes avisoPulse {
+      0%, 100% { opacity: 1; transform: scale(1); box-shadow: 0 0 10px rgba(254,188,46,0.75); }
+      50% { opacity: 0.3; transform: scale(0.8); box-shadow: 0 0 3px rgba(254,188,46,0.25); }
+    }
+    @media (max-width: 640px) {
+      #aviso-site { padding: 44px 20px; }
+      .aviso-btn { font-size: 14px; padding: 13px 20px; gap: 10px; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .aviso-dot { animation: none; }
+    }
+
+    /* ════════════════════════════════════
        DIAGNÓSTICO
     ════════════════════════════════════ */
     #diagnostico {
@@ -1014,6 +1070,23 @@
 
 
   <!-- ════════════════════════════════════════════════════
+       AVISO — ABRIR PROPOSTA DO SITE
+  ════════════════════════════════════════════════════ -->
+  <div id="aviso-site">
+    <button type="button" class="aviso-btn" id="aviso-btn" aria-expanded="false" aria-controls="proposta-site">
+      <span class="aviso-dot"></span>
+      <span id="aviso-label">Clique aqui para ver o início da proposta (site)</span>
+    </button>
+  </div>
+
+
+  <!-- ════════════════════════════════════════════════════
+       PROPOSTA DO SITE (recolhida por padrão)
+  ════════════════════════════════════════════════════ -->
+  <div id="proposta-site" hidden>
+
+
+  <!-- ════════════════════════════════════════════════════
        DIAGNÓSTICO
   ════════════════════════════════════════════════════ -->
   <section id="diagnostico">
@@ -1271,6 +1344,9 @@
     </div>
   </section>
 
+  </div>
+  <!-- ═══ fim da proposta do site ═══ -->
+
 
   <!-- ════════════════════════════════════════════════════
        LINKEDIN
@@ -1520,6 +1596,7 @@
           empresa.marimanfredinny.com
         </div>
         <div class="footer-legal">
+          CNPJ 47.046.111/0001-00<br>
           &copy; 2026 Mariana Manfredinny. Todos os direitos reservados.<br>
           Copywriting e estratégia desta proposta: Mariana Manfredinny.
         </div>
@@ -1562,6 +1639,57 @@
     document.querySelectorAll('#hero [data-reveal]').forEach(el => {
       setTimeout(() => el.classList.add('visible'), 100 + (parseInt(el.dataset.delay || 0) * 80));
     });
+
+    // ── Abrir / esconder a proposta do site ──
+    const propostaSite = document.getElementById('proposta-site');
+    const avisoBtn = document.getElementById('aviso-btn');
+    const avisoLabel = document.getElementById('aviso-label');
+    const LABEL_ABRIR = 'Clique aqui para ver o início da proposta (site)';
+    const LABEL_FECHAR = 'Esconder o início da proposta (site)';
+
+    function abrirPropostaSite(alvo) {
+      if (propostaSite.hidden) {
+        propostaSite.hidden = false;
+        avisoBtn.setAttribute('aria-expanded', 'true');
+        avisoLabel.textContent = LABEL_FECHAR;
+      }
+      if (alvo) {
+        requestAnimationFrame(() => alvo.scrollIntoView({ behavior: 'smooth', block: 'start' }));
+      }
+    }
+
+    avisoBtn.addEventListener('click', () => {
+      if (propostaSite.hidden) {
+        abrirPropostaSite(document.getElementById('diagnostico'));
+      } else {
+        propostaSite.hidden = true;
+        avisoBtn.setAttribute('aria-expanded', 'false');
+        avisoLabel.textContent = LABEL_ABRIR;
+        avisoBtn.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      }
+    });
+
+    // Itens do menu que apontam para dentro da proposta do site abrem-na antes de rolar
+    document.querySelectorAll('.mb-item').forEach(link => {
+      link.addEventListener('click', (e) => {
+        const alvo = document.getElementById(link.getAttribute('href').slice(1));
+        if (alvo && propostaSite.contains(alvo) && propostaSite.hidden) {
+          e.preventDefault();
+          abrirPropostaSite(alvo);
+        }
+      });
+    });
+
+    // Link direto para uma seção de dentro da proposta do site (ex.: /index.html#diagnostico)
+    function abrirPeloEndereco() {
+      if (location.hash.length < 2) return;
+      const alvo = document.getElementById(decodeURIComponent(location.hash.slice(1)));
+      if (alvo && propostaSite.contains(alvo) && propostaSite.hidden) {
+        abrirPropostaSite(alvo);
+      }
+    }
+    abrirPeloEndereco();
+    window.addEventListener('hashchange', abrirPeloEndereco);
   </script>
 
 </body>
