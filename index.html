@@ -76,6 +76,17 @@
       .mb-item { display: none; }
     }
 
+    /* ── Só para leitores de tela ── */
+    .sr-only {
+      position: absolute;
+      width: 1px; height: 1px;
+      padding: 0; margin: -1px;
+      overflow: hidden;
+      clip: rect(0, 0, 0, 0);
+      white-space: nowrap;
+      border: 0;
+    }
+
     /* ── Scroll reveal ── */
     [data-reveal] {
       opacity: 0;
@@ -1039,6 +1050,8 @@
        HERO
   ════════════════════════════════════════════════════ -->
   <section id="hero">
+    <h1 class="sr-only">Proposta Socicarril — Mariana Manfredinny</h1>
+
     <div class="hero-bg"></div>
     <div class="hero-liquid a"></div>
     <div class="hero-liquid b"></div>
